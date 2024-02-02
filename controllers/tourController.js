@@ -65,7 +65,7 @@ export const getAllTour = async(req, res)=>{
         
         const tours = await Tour.find({})
 
-        res.status(200).json({tours})
+        res.status(200).json(tours)
 
     } catch (err) {
         res.status(404).json({success:false, message:'Not found'})
