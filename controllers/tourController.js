@@ -84,16 +84,26 @@ export const searchTour = async(req, res)=>{
         // Nếu city được truyền vào, thêm điều kiện tìm kiếm cho city
         if (city) {
             query.city = { $regex: city, $options: 'i' };
+        } else{
+            city = ""
+            query.city = { $regex: city, $options: 'i' };
         }
 
         // Nếu distance được truyền vào, thêm điều kiện tìm kiếm cho distance
         if (distance) {
+            query.distance = { $lte: distance };
+        }else{
+            distance=10000000
             query.distance = { $lte: distance };
         }
 
         // Nếu maxGroupSize được truyền vào, thêm điều kiện tìm kiếm cho maxGroupSize
         if (maxGroupSize) {
             query.maxGroupSize = {$lte: maxGroupSize};
+        }else{
+            maxGroupSize=100
+            query.maxGroupSize = {$lte: maxGroupSize};
+
         }
 
         // Thực hiện truy vấn với các điều kiện tìm kiếm đã xây dựng
