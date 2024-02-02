@@ -8,7 +8,7 @@ router.delete('/:id', deleteTour);
 router.get('/:id', getSingleTour);
 router.get('/', getAllTour);
 
-router.post('/search/:city', searchTour)
+router.post('/search/:city/:distance/:maxGroupSize', searchTour)
 export default router;
 
 

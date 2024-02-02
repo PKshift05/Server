@@ -74,11 +74,36 @@ export const getAllTour = async(req, res)=>{
 }
 
 export const searchTour = async(req, res)=>{
-    const cityName = req.params.city;
-
+   
     try {
-        const data = await Tour.find({ city: { $regex: cityName, $options: 'i' } }).limit(8);
-        res.send(data);
+        const { city, distance, maxGroupSize } = req.params;
+
+        // Tạo một đối tượng query rỗng
+        const query = {};
+
+        // Nếu city được truyền vào, thêm điều kiện tìm kiếm cho city
+        if (city) {
+            query.city = { $regex: city, $options: 'i' };
+        }
+
+        // Nếu distance được truyền vào, thêm điều kiện tìm kiếm cho distance
+        if (distance) {
+            query.distance = { $lte: distance };
+        }
+
+        // Nếu maxGroupSize được truyền vào, thêm điều kiện tìm kiếm cho maxGroupSize
+        if (maxGroupSize) {
+            query.maxGroupSize = {$lte: maxGroupSize};
+        }
+
+        // Thực hiện truy vấn với các điều kiện tìm kiếm đã xây dựng
+        const data = await Tour.find(query).limit(8);
+
+        if (data.length === 0) {
+            res.status(404).send({ success: false, message: "No tours found with the specified criteria." });
+        } else {
+            res.send(data);
+        }
     } catch (error) {
         console.error('Error searching data:', error);
         res.status(500).send({ success: false, message: "Internal Server Error" });
