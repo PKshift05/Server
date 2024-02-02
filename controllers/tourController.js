@@ -90,7 +90,7 @@ export const searchTour = async(req, res)=>{
         }
 
         // Nếu distance được truyền vào, thêm điều kiện tìm kiếm cho distance
-        if (distance) {
+        if (distance!=0) {
             query.distance = { $lte: distance };
         }else{
             distance=10000000
@@ -98,7 +98,7 @@ export const searchTour = async(req, res)=>{
         }
 
         // Nếu maxGroupSize được truyền vào, thêm điều kiện tìm kiếm cho maxGroupSize
-        if (maxGroupSize) {
+        if (maxGroupSize!=0) {
             query.maxGroupSize = {$lte: maxGroupSize};
         }else{
             maxGroupSize=100
