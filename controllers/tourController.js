@@ -76,7 +76,7 @@ export const getAllTour = async(req, res)=>{
 export const searchTour = async(req, res)=>{
    
     try {
-        const { city, distance, maxGroupSize } = req.params;
+        let { city, distance, maxGroupSize } = req.params;
 
         // Tạo một đối tượng query rỗng
         const query = {};
@@ -93,7 +93,7 @@ export const searchTour = async(req, res)=>{
         if (distance!=0) {
             query.distance = { $lte: distance };
         }else{
-            distance=10000000
+            distance=10000
             query.distance = { $lte: distance };
         }
 
