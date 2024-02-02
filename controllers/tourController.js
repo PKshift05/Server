@@ -53,7 +53,7 @@ export const getSingleTour = async(req, res)=>{
         
         const tour = await Tour.findById(id)
 
-        res.status(200).json({success:true, message:'Successfully find tour',data: tour})
+        res.status(200).json(tour)
 
     } catch (err) {
         res.status(404).json({success:false, message:'Not found'})
@@ -78,7 +78,7 @@ export const searchTour = async(req, res)=>{
 
     try {
         const data = await Tour.find({ city: { $regex: cityName, $options: 'i' } }).limit(8);
-        res.send({ success: true, message: "Search data successfully", data: data });
+        res.send(data);
     } catch (error) {
         console.error('Error searching data:', error);
         res.status(500).send({ success: false, message: "Internal Server Error" });
