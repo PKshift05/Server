@@ -19,14 +19,6 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    photo: {
-      type: String,
-      required: true,
-    },
-    desc: {
-      type: String,
-      required: true,
-    },
     price: {
       type: Number,
       required: true,
@@ -35,14 +27,24 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-
+    desc: {
+      type: String,
+      required: true,
+    },
+    
     reviews: [
       {
-        type: mongoose.Types.ObjectId,
-        ref: "Review",
+        name: String,
+        rating: Number,
       },
     ],
-
+    avgrating:{
+      type:Number,
+    },
+    photo: {
+      type: String,
+      required: true,
+    },
     featured: {
       type: Boolean,
       default: false,
