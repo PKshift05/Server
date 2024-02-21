@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import router from './routers/tours.js'
+import userRouter from './routers/users.js'
 
 const app = express()
 app.use(cors())
@@ -19,3 +20,4 @@ mongoose.connect("mongodb+srv://quang05:quang123@cluster0.j5oyhc4.mongodb.net/?r
 
 
 app.use('/tours', router)
+app.use('/users', userRouter)
