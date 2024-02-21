@@ -4,7 +4,11 @@ export const getUsers = async (req, res) => { }
 export const getAllUsers = async (req, res) => { }
 export const login = async (req, res) => { }
 export const register = async (req, res) => {
-    const newUser = new User(req.body)
+    const newUser = new User({
+        username: req.body.userName || 'defaultUsername',
+        email: req.body.email,
+        password: req.body.password
+      });
     
     try{
         const savedUser = await newUser.save()
