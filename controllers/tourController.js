@@ -97,7 +97,7 @@ export const searchTour = async(req, res)=>{
 
         // Nếu maxGroupSize được truyền vào, thêm điều kiện tìm kiếm cho maxGroupSize
         if (maxGroupSize!=0) {
-            query.maxGroupSize = {$lte: maxGroupSize};
+            query.maxGroupSize = {$gte: maxGroupSize};
         }
 
         // Thực hiện truy vấn với các điều kiện tìm kiếm đã xây dựng
